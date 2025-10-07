@@ -77,8 +77,6 @@ userRouter.get("/feed",userAuth,async (req, res) =>  {
 
         const hiddenUsersFromFeed = new Set();
         connectionRequests.forEach((req) => {
-            //hiddenUsersFromFeed.add(req.fromUserId.toString());
-            //hiddenUsersFromFeed.add(req.toUserId.toString());
             if (req.fromUserId && req.fromUserId._id) {
              hiddenUsersFromFeed.add(req.fromUserId._id.toString());
             }
@@ -99,9 +97,6 @@ userRouter.get("/feed",userAuth,async (req, res) =>  {
         .select(USER_SAFE_DATA)
         .skip(skip)
         .limit(limit);
-
-
-        //res.send(connectionRequests);
         res.json({data:users});
 
     }
